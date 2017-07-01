@@ -22,15 +22,17 @@
 	regulator-always-on;
 };
 
-&uart0 {
-	status = "okay";
+&mmc1 {
+	vmmc-supply = <&vmmcsd_fixed>;
 };
 
-//&uart1 {
-//	status = "okay";
-//};
-
-
+&mmc2 {
+	vmmc-supply = <&vmmcsd_fixed>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&emmc_pins>;
+	bus-width = <8>;
+	status = "okay";
+};
 
 &spi0 {
 	status = "okay";
@@ -48,33 +50,13 @@
 
 
 
-&mmc1 {
-	vmmc-supply = <&vmmcsd_fixed>;
-};
-
-&mmc2 {
-	vmmc-supply = <&vmmcsd_fixed>;
-	pinctrl-names = "default";
-	pinctrl-0 = <&emmc_pins>;
-	bus-width = <8>;
-	status = "okay";
-};
-
 &am33xx_pinmux {
-	uart1_pins: pinmux_uart1_pins {
-		pinctrl-single,pins = <
-			0x180 (PIN_INPUT_PULLUP | MUX_MODE0)	/* uart1_rxd.uart0_rxd P9_26 */
-			0x184 (PIN_OUTPUT_PULLDOWN | MUX_MODE0)	/* uart1_txd.uart0_txd P9_24 */
-		>;
-	};
-
-
 	pinctrl_spi0: pinmux_spi0_pins {
 		pinctrl-single,pins = <
 			0x150 0x30	/* SPI0_CLK - P9.22 */
 			0x154 0x30	/* SPI0_D0 - P9.21 */
 			0x158 0x10	/* SPI0_D1 - P9.18 */
-			0x15C 0x17 	/* SPI0_CS0 - P9.17 */
+			0x15C 0x10 	/* SPI0_CS0 - P9.17 */
 		>;
 	};
 
