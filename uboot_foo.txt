@@ -1,0 +1,10 @@
+setenv fdtaddr 0x88000000
+setenv kloadaddr 0x80007fc0
+load mmc 0:2 ${loadaddr} boot/uImage
+load mmc 0:2 ${fdtaddr} boot/am335x-boneblack.dtb
+setenv mmcroot /dev/mmcblk0p2 ro
+setenv mmcrootfstype ext4 rootwait
+setenv bootargs console=${console} ${optargs} root=${mmcroot} rootfstype=${mmcrootfstype}
+bootm ${loadaddr} - ${fdtaddr}
+
+setenv fdtaddr 0x88000000; setenv kloadaddr 0x80007fc0; load mmc 0:2 ${loadaddr} boot/uImage; load mmc 0:2 ${fdtaddr} boot/am335x-boneblack.dtb; setenv mmcroot /dev/mmcblk0p2 ro; setenv mmcrootfstype ext4 rootwait; setenv bootargs console=${console} ${optargs} root=${mmcroot} rootfstype=${mmcrootfstype}; bootm ${loadaddr} - ${fdtaddr}
