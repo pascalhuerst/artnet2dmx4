@@ -6,6 +6,8 @@
 OLA_ARGS=--daemon
 
 start() {
+	printf "Load kernel module:"
+        /usr/sbin/modprobe ftdi_sio && sleep 3
         printf "Starting olad: "
 	/usr/sbin/ifconfig eth0 192.168.1.3 netmask 255.255.255.0 up && /bin/olad $OLA_ARGS
         echo "OK"
