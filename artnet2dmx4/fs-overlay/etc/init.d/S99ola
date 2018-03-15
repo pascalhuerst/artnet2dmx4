@@ -6,8 +6,16 @@
 OLA_ARGS=--daemon
 
 start() {
-	printf "Load kernel module:"
-        /usr/sbin/modprobe ftdi_sio && sleep 3
+	printf "Load Kernel Module: "
+	/usr/sbin/modprobe ftdi_sio && sleep 3
+	echo "OK"
+
+	printf "Exporting GPIOs in sysfs: "
+	for pin in 66 67 69 68 45 44 23 26; do
+		/bin/echo "$pin" > /sys/class/gpio/export; /bin/sleep 0.5;
+	done
+	echo "OK"
+
         printf "Starting olad: "
 	/usr/sbin/ifconfig eth0 192.168.1.3 netmask 255.255.255.0 up && /bin/olad $OLA_ARGS
         echo "OK"
@@ -16,6 +24,12 @@ start() {
 stop() {
         printf "Stopping logging: "
 	/bin/killall olad
+        echo "OK"
+
+        printf "Unexporting GPIOs in sysfs: "
+        for pin in 66 67 69 68 45 44 23 26; do
+                /bin/echo "$pin" > /sys/class/gpio/unexport; /bin/sleep 0.5;
+        done
         echo "OK"
 }
 
