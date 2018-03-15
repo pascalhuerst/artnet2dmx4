@@ -1,26 +1,28 @@
-From 56e98492195cf815e92b21596a7650e43f907a13 Mon Sep 17 00:00:00 2001
+From 50b767a16192f3c5139cc569bb335831c52ed4d6 Mon Sep 17 00:00:00 2001
 From: Pascal Huerst <pascal.huerst@gmail.com>
 Date: Thu, 15 Mar 2018 13:16:22 +0100
 Subject: [PATCH] Increase Artnet Universe count from 4 to 8
 
 I need more than 4 Universes
 ---
- plugins/artnet/ArtNetPackets.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ plugins/artnet/ArtNetPackets.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/plugins/artnet/ArtNetPackets.h b/plugins/artnet/ArtNetPackets.h
-index bc5437161..a0431e95c 100644
+index c24d34c58..a0431e95c 100644
 --- a/plugins/artnet/ArtNetPackets.h
 +++ b/plugins/artnet/ArtNetPackets.h
-@@ -29,7 +29,7 @@
+@@ -29,8 +29,8 @@
  
  
  #ifndef ARTNET_PORT_COUNT
 -#define ARTNET_PORT_COUNT 4
+-#endif  // ARTNET_PORT_COUNT
 +#define ARTNET_PORT_COUNT 8
- #endif
++#endif
  
  namespace ola {
+ namespace plugin {
 -- 
 2.14.3
 
