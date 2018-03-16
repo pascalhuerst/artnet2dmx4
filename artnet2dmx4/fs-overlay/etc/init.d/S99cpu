@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# Start cpu.sh
+#
+
+start() {
+        printf "Starting cpu usage measurement: "
+	/bin/sh /roo/cpu.sh
+        echo "OK"
+}
+
+stop() {
+        printf "Stopping cpu usage measurement: "
+	/bin/killall cpu.sh
+        echo "OK"
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        stop
+        start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?
+
