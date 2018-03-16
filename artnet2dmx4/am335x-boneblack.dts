@@ -58,6 +58,13 @@
 	pinctrl-0 = <&uart5_pins>;
 };
 
+&i2c1 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c1_pins>;
+};
+
+
 &am33xx_pinmux {
 	uart1_pins: pinmux_uart1_pins {
 		pinctrl-single,pins = <
@@ -86,6 +93,13 @@
 			AM33XX_IOPAD(0x8C4, PIN_INPUT_PULLUP | MUX_MODE4)	/* RXD - P8.38 */
 		>;
 	};
+	i2c1_pins: pinmux_i2c1_pins {
+		pinctrl-single,pins = <
+			AM33XX_IOPAD(0x95c, PIN_OUTPUT_PULLUP | MUX_MODE2)	/* SCL - P9.17 */
+			AM33XX_IOPAD(0x958, PIN_OUTPUT_PULLUP | MUX_MODE2)	/* SDA - P9.18 */
+		>;
+	};
+
 };
 
 &rtc {
